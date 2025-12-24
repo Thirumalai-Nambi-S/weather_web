@@ -386,83 +386,39 @@ a {
 
 /* === RESPONSIVE MEDIA QUERIES === */
 
-/* Mobile Phones */
+/* FIX FOR MOBILE VIDEO BLACK BARS */
 @media screen and (max-width: 767px) {
-  .weather-box {
-    top: 45%;
-    max-height: 70vh;
-  }
-
-
+  #background-video,
   #intro-video {
-    object-fit: contain;
-
-  }
-
-  #loading-screen {
-    background: #000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+    object-fit: cover !important; /* THIS IS THE KEY FIX */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%) scale(1.1);
   }
   
-  #background-video {
-    object-fit: contain;
+  /* Ensure loading screen covers properly */
+  #loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-
-  }
-
-  #view-video {
-    object-fit: contain;
-
-  }
-
-
-  #map-container {
-    width: 95%;
-    height: 50vh;
+    background: #000;
   }
   
-  .view-toggle {
-    top: 10px;
-    right: 10px;
-    
-  }
-  
-  .input-container {
-    bottom: 10px;
-    padding: 12px;
-  }
-  
-  .copyright {
-    font-size: 10px;
-    bottom: 5px;
-  }
-  
-  .weather-details {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-}
-
-/* Tablets */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /* Make weather box more mobile-friendly */
   .weather-box {
-    max-width: 350px;
-    top: 42%;
-  }
-  
-  #map-container {
-    width: 85%;
-    max-width: 700px;
-    height: 65vh;
-  }
-  
-  .input-container {
-    max-width: 450px;
+    width: 95%;
+    max-height: 80vh;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px;
+    overflow-y: auto;
   }
 }
 
