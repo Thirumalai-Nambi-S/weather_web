@@ -137,12 +137,12 @@ body {
   min-width: 280px;
   height: auto;
   max-height: 85vh;
-  min-height: 300px;
+  min-height: 450px;
   position: absolute;
   left: 50%;
   top: 40%;
-  background-color: rgba(109, 109, 109, 0.232);
-  border: 2px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(122, 121, 121, 0.162);
+  border: white 2px solid;
   border-radius: 30px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
   transform: translate(-50%, -50%);
@@ -336,6 +336,8 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   background: none;
+  
+  padding: 15px;
   gap: 10px;
   margin: 20px 0;
   width: 90%;
@@ -345,9 +347,11 @@ a {
 }
 
 .weather-detail-item {
-  background: rgba(196, 196, 196, 0.123);
+  background: rgba(255, 255, 255, 0.303);
   padding: 10px;
+  opacity: 0.8;
   border-radius: 10px;
+  border: #ffffff65 1px solid;
   color: black;
   text-align: center;
 }
@@ -374,7 +378,7 @@ a {
   position: absolute;
   bottom: 10px;
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.848);
+  color: rgb(255, 255, 255);
   z-index: 10;
   width: 100%;
   text-align: center;
