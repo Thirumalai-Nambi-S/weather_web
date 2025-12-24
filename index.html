@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Weather App</title>
+    <link rel="icon" type="image/png" href="image/icon.png?v=2">
+    <link rel="shortcut icon" href="image/icon.png?v=2" type="image/png">
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Intro Video Container -->
+    <div id="intro-container">
+      <video id="intro-video" muted>
+        <!-- Intro video will be loaded dynamically -->
+      </video>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading Weather App...</div>
+    </div>
+
+    <!-- Background Video -->
+    <video id="background-video" autoplay muted loop>
+      <!-- Background video will be changed based on weather -->
+    </video>
+
+    <!-- View Toggle Buttons -->
+    <div class="view-toggle">
+      <button class="toggle-btn active" id="weather-toggle">⛅</button>
+      <button class="toggle-btn" id="map-toggle">🌍</button>
+    </div>
+
+    <!-- Weather Box -->
+    <div class="weather-box" id="weather-box">
+      <div class="weather-info" id="weather-info"></div>
+    </div>
+
+    <!-- Map Container -->
+    <div id="map-container">
+      <div id="map"></div>
+    </div>
+
+    <!-- Input Container -->
+    <div class="input-container" id="input-container">
+      <form action="" class="input-form" id="input-form">
+        <input
+          type="text"
+          class="input-bar"
+          id="input-bar"
+          placeholder="Enter City Name"
+          required
+          autocomplete="off"
+        />
+      </form>
+      <div class="btn-actions">
+        <button class="searchbtn" id="searchbtn">🔍</button>
+      </div>
+    </div>
+
+     <p class="copyright">© 2025 Weather Application | Developed by THIRUMALAI NAMBI</p>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Google Maps API -->
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqLYWMGawL6HsI68FJC-tjbrDSBhv0UZU&callback=initGoogleMap"
+    ></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

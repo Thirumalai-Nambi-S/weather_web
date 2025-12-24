@@ -1,0 +1,500 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+/* === RESPONSIVE VIDEO CONTAINERS === */
+#background-video,
+#intro-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Intro Video Container */
+#intro-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Loading Screen */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+}
+
+#loading-screen.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+.loading-text {
+  font-size: 18px;
+  color: white;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* === RESPONSIVE VIEW TOGGLE BUTTONS === */
+.view-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.toggle-btn {
+  font-size: clamp(18px, 4vw, 25px);
+  padding: clamp(8px, 2vw, 10px) clamp(12px, 3vw, 20px);
+  background: rgba(255, 255, 255, 0.273);
+  border: none;
+  outline: none;
+  border-radius: 100px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+  background: rgba(0, 0, 0, 0);
+  padding: clamp(8px, 2vw, 10px) clamp(8px, 2vw, 10px);
+}
+.toggle-btn{
+  padding: clamp(8px, 2vw, 10px) clamp(8px, 2vw, 10px);
+  background: rgba(0, 0, 0, 0);
+}
+.toggle-btn:hover {
+  background: rgba(105, 105, 105, 0.474);
+}
+.toggle-btn.active:active {
+  transform: translateY(1px);
+}
+.toggle-btn:active {
+  transform: translateY(1px);
+}
+
+/* === RESPONSIVE WEATHER BOX === */
+.weather-box {
+  visibility: hidden;
+  width: 90%;
+  max-width: 400px;
+  min-width: 280px;
+  height: auto;
+  max-height: 85vh;
+  min-height: 300px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  background-color: rgba(109, 109, 109, 0.232);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  backdrop-filter: blur(5px);
+  margin-bottom: 100px;
+  outline: rgba(255, 254, 254, 0.385) 1px solid;
+  border: none;
+  z-index: 10;
+  overflow-y: auto;
+}
+
+/* === RESPONSIVE MAP CONTAINER === */
+#map-container {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translateX(150%) translateY(-50%);
+  width: 90%;
+  max-width: 800px;
+  height: 60vh;
+  min-height: 300px;
+  max-height: 500px;
+  display: block;
+  z-index: 10;
+  transition: transform 3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+#map-container.slide-in {
+  transform: translateX(-50%) translateY(-50%);
+}
+
+#map-container.slide-out {
+  transform: translateX(150%) translateY(-50%);
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* === RESPONSIVE INPUT CONTAINER === */
+.input-container {
+  position: fixed;
+  width: 90%;
+  max-width: 500px;
+  min-width: 280px;
+  height: max-content;
+  left: 50%;
+  bottom: 20px;
+  padding: 16px;
+  background-color: transparent;
+  border-radius: 60px;
+  opacity: 3;
+  display: inline-flex;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.input-form {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  width: 88%;
+  border-radius: 80px;
+  background-color: rgba(247, 247, 247, 0.489);
+  transition: all 0.5s ease;
+}
+
+.input-form:focus-within {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.input-bar {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: clamp(14px, 3vw, 18px);
+  color: rgb(0, 0, 0);
+  padding-left: 18px;
+}
+
+.input-bar::placeholder {
+  color: rgba(0, 0, 0, 0.736);
+}
+
+.searchbtn {
+  padding: 5px;
+  font-size: clamp(20px, 5vw, 33px);
+  border-radius: 100px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+  background-color: rgba(247, 247, 247, 0.271);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+.searchbtn:hover {
+  background-color: rgba(77, 77, 77, 0.474);
+}
+
+.searchbtn:active {
+  transform: translateY(1px);
+}
+
+a {
+  text-decoration: none;
+}
+
+.map-btn {
+  position: fixed;
+  font-size: 50px;
+  padding: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: inline-block;
+  top: 20px;
+}
+
+.map-btn:active {
+  transform: translateY(1px);
+}
+
+.map-view .map-popup {
+  position: fixed;
+  visibility: hidden;
+  width: 100px;
+  background-color: rgb(192, 156, 156);
+  color: #c93c3c;
+  text-align: center;
+  border-radius: 15px;
+  padding: 5px;
+  position: absolute;
+  z-index: 11;
+  bottom: 83%;
+  left: 92.5%;
+  opacity: 0;
+  transition: opacity 1.5s;
+}
+
+.map-view:hover .map-popup {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* === RESPONSIVE WEATHER INFO STYLES === */
+.weather-info h2 {
+  font-size: clamp(24px, 6vw, 35px);
+  margin: 10px;
+  color: black;
+}
+
+.weather-info p {
+  margin: 8px 0;
+  color: black;
+}
+
+.temperature {
+  font-size: clamp(32px, 8vw, 45px);
+  font-weight: 700;
+  margin: 8px;
+  color: black;
+}
+
+.conditions {
+  font-size: clamp(14px, 4vw, 18px);
+  text-transform: capitalize;
+  color: black;
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  background: none;
+  gap: 10px;
+  margin: 20px 0;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+}
+
+.weather-detail-item {
+  background: rgba(196, 196, 196, 0.123);
+  padding: 10px;
+  border-radius: 10px;
+  color: black;
+  text-align: center;
+}
+
+.sun-times {
+  margin: 15px 0;
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+}
+
+.loading-weather {
+  font-size: 35px;
+  margin-bottom: 10px;
+  animation: spin 2s linear infinite;
+}
+
+/* Leaflet Popup Styling */
+.leaflet-popup-content {
+  font-size: 14px;
+  color: black;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 10px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.848);
+  z-index: 10;
+  width: 100%;
+  text-align: center;
+}
+
+/* === RESPONSIVE MEDIA QUERIES === */
+
+/* Mobile Phones */
+@media screen and (max-width: 767px) {
+  .weather-box {
+    top: 45%;
+    max-height: 70vh;
+  }
+  
+  #map-container {
+    width: 95%;
+    height: 50vh;
+  }
+  
+  .view-toggle {
+    top: 10px;
+    right: 10px;
+  }
+  
+  .input-container {
+    bottom: 10px;
+    padding: 12px;
+  }
+  
+  .copyright {
+    font-size: 10px;
+    bottom: 5px;
+  }
+  
+  .weather-details {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .weather-box {
+    max-width: 350px;
+    top: 42%;
+  }
+  
+  #map-container {
+    width: 85%;
+    max-width: 700px;
+    height: 65vh;
+  }
+  
+  .input-container {
+    max-width: 450px;
+  }
+}
+
+/* Large Screens (TVs, Desktops) */
+@media screen and (min-width: 1200px) {
+  .weather-box {
+    max-width: 450px;
+    max-height: 500px;
+  }
+  
+  #map-container {
+    max-width: 900px;
+    height: 65vh;
+  }
+}
+
+/* Portrait vs Landscape adjustments */
+@media screen and (orientation: portrait) {
+  .weather-box {
+    width: 85%;
+  }
+  
+  .weather-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .weather-box {
+    top: 50%;
+    max-height: 90vh;
+    width: 80%;
+  }
+  
+  .input-container {
+    bottom: 5px;
+    padding: 8px;
+  }
+  
+  #map-container {
+    height: 70vh;
+  }
+}
+
+/* High-resolution displays */
+@media screen and (min-resolution: 192dpi) {
+  .toggle-btn,
+  .searchbtn {
+    backdrop-filter: blur(15px);
+  }
+}
+
+/* Extra small devices */
+@media screen and (max-width: 350px) {
+  .weather-box {
+    min-width: 250px;
+    max-height: 75vh;
+  }
+  
+  .input-container {
+    min-width: 250px;
+  }
+  
+  .weather-detail-item {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
