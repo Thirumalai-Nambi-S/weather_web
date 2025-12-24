@@ -4,7 +4,7 @@
 
 ## 🌐 **Explore Live**
 **👉 Experience the App:**
-[Visit Live Demo](https://weathermap-application.netlify.app)
+[Visit Live Demo](https://weather-map-web.pages.dev/)
 
 ## 📷 **Visual Output**
 ![Weather App Demo ScreenShot](/demo/Default.jpeg)
