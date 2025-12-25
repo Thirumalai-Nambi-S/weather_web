@@ -418,14 +418,14 @@ body {
   }
   
   .toggle-btn {
-    font-size: 18px;
+    font-size: 20px;
     padding: 8px 12px;
-    min-width: 40px;
-    min-height: 40px;
+    min-width: 50px;
+    min-height: 50px;
   }
 
   .toggle-btn.active{
-    font-size: 18px;
+    font-size: 20px;
     padding: 8px 12px;
     min-width: 50px;
     min-height: 50px;
