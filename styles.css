@@ -412,7 +412,7 @@ body {
   }
   
   .view-toggle {
-    top: env(safe-area-inset-top, 10px);
+    top: 12px;
     right: 10px;
     gap: 6px;
   }
@@ -423,11 +423,18 @@ body {
     min-width: 40px;
     min-height: 40px;
   }
+
+  .toggle-btn.active{
+    font-size: 18px;
+    padding: 8px 12px;
+    min-width: 50px;
+    min-height: 50px;
+  }
   
   .input-container {
     width: 96%;
-    bottom: env(safe-area-inset-bottom, 10px);
-    padding: 8px;
+    bottom: 25px;
+    padding: 5px;
   }
   
   .input-form {
@@ -460,7 +467,7 @@ body {
   }
   
   .weather-details {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: 8px;
     padding: 10px;
   }
@@ -475,8 +482,8 @@ body {
   }
   
   .copyright {
-    font-size: 10px;
-    bottom: env(safe-area-inset-bottom, 5px);
+    font-size: smaller;
+    bottom: 5px;
   }
 }
 
