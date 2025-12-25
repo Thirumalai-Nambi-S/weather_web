@@ -1,62 +1,71 @@
 /* =========================
-   GLOBAL RESET
+   GLOBAL RESET & BASE STYLES
 ========================= */
 * {
-  margin: 0;
-  padding: 0;
+  padding: 0px;
+  margin: 0px;
   box-sizing: border-box;
 }
 
-/* =========================
-   BODY
-========================= */
 body {
-  background: #000;
-  min-height: 100dvh;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
   font-family: Arial, sans-serif;
-  color: #fff;
+  color: white;
   position: relative;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 /* =========================
-   VIDEOS (INTRO + BACKGROUND)
+   MOBILE FIRST STYLES (Base for all devices)
 ========================= */
+
+/* === VIDEO CONTAINERS === */
 #background-video,
 #intro-video {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: -1;
 }
 
+/* Intro Video Container */
 #intro-container {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
   background: #000;
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 1000;
+  align-items: center;
 }
 
-/* =========================
-   LOADING SCREEN
-========================= */
+/* === LOADING SCREEN === */
 #loading-screen {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: #000;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: 0.4s;
+  transition: opacity 0.5s ease;
 }
 
 #loading-screen.active {
@@ -65,255 +74,488 @@ body {
 }
 
 .loading-spinner {
-  width: 60px;
-  height: 60px;
-  border: 5px solid rgba(255,255,255,0.3);
-  border-top-color: #fff;
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
+  border-top-color: #fff;
   animation: spin 1s linear infinite;
+  margin-bottom: 15px;
 }
 
 .loading-text {
-  margin-top: 15px;
+  font-size: 16px;
+  color: white;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-/* =========================
-   VIEW TOGGLE BUTTONS
-========================= */
+/* === VIEW TOGGLE BUTTONS === */
 .view-toggle {
   position: fixed;
-  top: env(safe-area-inset-top, 12px);
-  right: 12px;
-  display: flex;
-  gap: 8px;
-  z-index: 15;
-}
-
-.toggle-btn {
-  font-size: 20px;
-  padding: 8px 12px;
-  border-radius: 50px;
-  border: none;
-  background: rgba(255,255,255,0.25);
-  color: #fff;
-  backdrop-filter: blur(10px);
-  cursor: pointer;
-}
-
-.toggle-btn.active {
-  background: rgba(255,255,255,0.45);
-}
-
-.toggle-btn:active {
-  transform: scale(0.95);
-}
-
-/* =========================
-   WEATHER BOX
-========================= */
-.weather-box {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 420px;
-  min-height: 420px;
-  max-height: 80dvh;
-  padding: 15px;
-  background: rgba(255,255,255,0.2);
-  border-radius: 24px;
-  backdrop-filter: blur(8px);
-  overflow-y: auto;
-  z-index: 10;
-  visibility: hidden;
-}
-
-.weather-info h2,
-.weather-info p,
-.temperature,
-.conditions,
-.weather-details,
-.weather-detail-item,
-.sun-times {
-  color: #000;
-}
-
-/* =========================
-   WEATHER DETAILS GRID
-========================= */
-.weather-details {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.weather-detail-item {
-  background: rgba(255,255,255,0.5);
-  padding: 10px;
-  border-radius: 12px;
-  text-align: center;
-}
-
-/* =========================
-   MAP CONTAINER
-========================= */
-#map-container {
-  position: fixed;
-  left: 50%;
-  bottom: 80px;
-  transform: translateX(120%);
-  width: 95%;
-  max-width: 850px;
-  height: 50dvh;
-  border-radius: 20px;
-  overflow: hidden;
-  z-index: 10;
-  transition: transform 0.6s ease;
-}
-
-#map-container.slide-in {
-  transform: translateX(-50%);
-}
-
-#map-container.slide-out {
-  transform: translateX(120%);
-}
-
-#map {
-  width: 100%;
-  height: 100%;
-}
-
-/* =========================
-   INPUT CONTAINER
-========================= */
-.input-container {
-  position: fixed;
-  left: 50%;
-  bottom: env(safe-area-inset-bottom, 12px);
-  transform: translateX(-50%);
-  width: 95%;
-  max-width: 520px;
+  top: 15px;
+  right: 15px;
   display: flex;
   gap: 8px;
   z-index: 20;
 }
 
+.toggle-btn {
+  font-size: 18px;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  outline: none;
+  border-radius: 100px;
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-btn.active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.toggle-btn:active {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* === WEATHER BOX === */
+.weather-box {
+  visibility: hidden;
+  width: 92%;
+  max-width: 400px;
+  min-width: 280px;
+  height: auto;
+  max-height: 75vh;
+  min-height: 450px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  backdrop-filter: blur(10px);
+  z-index: 15;
+  overflow-y: auto;
+  padding: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Weather Info Styles */
+.weather-info h2 {
+  font-size: 24px;
+  margin: 10px 0;
+  color: white;
+}
+
+.weather-info p {
+  margin: 8px 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.temperature {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 8px;
+  color: white;
+}
+
+.conditions {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 12px;
+  gap: 10px;
+  margin: 15px 0;
+  width: 100%;
+}
+
+.weather-detail-item {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px 8px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  text-align: center;
+  font-size: 14px;
+}
+
+.sun-times {
+  margin: 15px 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* === MAP CONTAINER === */
+#map-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(150%) translateY(-50%);
+  width: 95%;
+  max-width: 800px;
+  height: 55vh;
+  min-height: 300px;
+  display: block;
+  z-index: 15;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+#map-container.slide-in {
+  transform: translateX(-50%) translateY(-50%);
+}
+
+#map-container.slide-out {
+  transform: translateX(150%) translateY(-50%);
+}
+
+#map {
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+}
+
+/* === INPUT CONTAINER === */
+.input-container {
+  position: fixed;
+  width: 92%;
+  max-width: 500px;
+  min-width: 280px;
+  height: auto;
+  left: 50%;
+  bottom: 15px;
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 60px;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .input-form {
   flex: 1;
   height: 48px;
-  background: rgba(255,255,255,0.6);
-  border-radius: 30px;
   display: flex;
   align-items: center;
+  border-radius: 60px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  padding: 0 5px;
+}
+
+.input-form:focus-within {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .input-bar {
   width: 100%;
   height: 100%;
-  border: none;
-  background: transparent;
-  padding: 0 15px;
-  font-size: 16px;
+  background: none;
   outline: none;
+  border: none;
+  font-size: 16px;
+  color: white;
+  padding: 0 15px;
+}
+
+.input-bar::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .searchbtn {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.6);
   font-size: 22px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
   cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  color: white;
+  min-width: 48px;
+  min-height: 48px;
 }
 
 .searchbtn:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
-/* =========================
-   COPYRIGHT
-========================= */
+/* === COPYRIGHT === */
 .copyright {
   position: fixed;
-  bottom: env(safe-area-inset-bottom, 4px);
+  bottom: 5px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  z-index: 5;
   width: 100%;
   text-align: center;
-  font-size: 10px;
-  z-index: 5;
+  pointer-events: none;
+}
+
+/* === MAP POPUP TOOLTIP === */
+.map-btn {
+  position: fixed;
+  font-size: 50px;
+  padding: 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  display: inline-block;
+  top: 20px;
+}
+
+.map-btn:active {
+  transform: translateY(1px);
+}
+
+.map-view .map-popup {
+  position: fixed;
+  visibility: hidden;
+  width: 100px;
+  background-color: rgb(192, 156, 156);
+  color: #c93c3c;
+  text-align: center;
+  border-radius: 15px;
+  padding: 5px;
+  position: absolute;
+  z-index: 11;
+  bottom: 83%;
+  left: 92.5%;
+  opacity: 0;
+  transition: opacity 1.5s;
+}
+
+.map-view:hover .map-popup {
+  visibility: visible;
+  opacity: 1;
 }
 
 /* =========================
-   MOBILE (≤768px)
+   MOBILE DEVICE OPTIMIZATIONS
+   (Extra small to small screens)
 ========================= */
-@media (max-width: 768px) {
+@media screen and (max-width: 480px) {
+  /* Adjust for very small screens */
   .weather-box {
     width: 95%;
-    max-height: 75dvh;
-  }
-
-  #map-container {
-    height: 45dvh;
-  }
-
-  .toggle-btn {
-    font-size: 18px;
-  }
-}
-
-/* =========================
-   TABLETS (768px–1024px)
-========================= */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .weather-box {
-    max-width: 380px;
-  }
-
-  #map-container {
-    height: 55dvh;
-  }
-}
-
-/* =========================
-   DESKTOP (≥1024px)
-========================= */
-@media (min-width: 1024px) {
-  .weather-box {
-    max-width: 460px;
-  }
-
-  #map-container {
-    height: 60vh;
-  }
-}
-
-/* =========================
-   LANDSCAPE SMALL HEIGHT
-========================= */
-@media (orientation: landscape) and (max-height: 500px) {
-  .weather-box {
-    top: 55%;
-    max-height: 90dvh;
-  }
-
-  #map-container {
-    height: 65dvh;
-  }
-}
-  .weather-box {
-    top: 40%;
+    max-height: 70vh;
+    min-height: 400px;
+    padding: 12px;
+    top: 50%;
   }
   
   #map-container {
-    width: 100%;
-    height: 40vh;
+    height: 50vh;
+    width: 96%;
+    border-radius: 15px;
+  }
+  
+  .view-toggle {
+    top: env(safe-area-inset-top, 10px);
+    right: 10px;
+    gap: 6px;
+  }
+  
+  .toggle-btn {
+    font-size: 16px;
+    padding: 8px 12px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  
+  .input-container {
+    width: 96%;
+    bottom: env(safe-area-inset-bottom, 10px);
+    padding: 8px;
+  }
+  
+  .input-form {
+    height: 44px;
+  }
+  
+  .searchbtn {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  .input-bar {
+    font-size: 15px;
+    padding: 0 12px;
+  }
+  
+  .weather-info h2 {
+    font-size: 22px;
+  }
+  
+  .temperature {
+    font-size: 32px;
+  }
+  
+  .conditions {
+    font-size: 15px;
+  }
+  
+  .weather-details {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 10px;
+  }
+  
+  .weather-detail-item {
+    padding: 10px 6px;
+    font-size: 13px;
+  }
+  
+  .sun-times {
+    font-size: 13px;
+  }
+  
+  .copyright {
+    font-size: 10px;
+    bottom: env(safe-area-inset-bottom, 5px);
+  }
+}
+
+/* =========================
+   SMALL TABLETS & LARGE PHONES
+   (481px - 767px)
+========================= */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+  .weather-box {
+    width: 90%;
+    max-height: 72vh;
+  }
+  
+  #map-container {
+    height: 52vh;
+    width: 94%;
+  }
+  
+  .view-toggle {
+    top: 20px;
+    right: 20px;
+  }
+  
+  .input-container {
+    width: 94%;
+    bottom: 20px;
+  }
+  
+  .weather-info h2 {
+    font-size: 26px;
+  }
+  
+  .temperature {
+    font-size: 34px;
+  }
+}
+
+/* =========================
+   TABLETS (768px - 1024px)
+========================= */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .weather-box {
+    max-width: 380px;
+    max-height: 65vh;
+    top: 45%;
+  }
+  
+  #map-container {
+    width: 90%;
+    max-width: 750px;
+    height: 60vh;
+  }
+  
+  .input-container {
+    max-width: 450px;
+    bottom: 25px;
+  }
+  
+  .view-toggle {
+    top: 25px;
+    right: 25px;
+  }
+  
+  .toggle-btn {
+    font-size: 20px;
+    padding: 12px 18px;
+  }
+  
+  .weather-info h2 {
+    font-size: 28px;
+  }
+  
+  .temperature {
+    font-size: 38px;
+  }
+  
+  .weather-details {
+    gap: 12px;
+    padding: 15px;
+  }
+  
+  .weather-detail-item {
+    padding: 14px 10px;
+    font-size: 15px;
+  }
+}
+
+/* =========================
+   LANDSCAPE ORIENTATION
+========================= */
+@media screen and (orientation: landscape) and (max-height: 600px) {
+  .weather-box {
+    top: 50%;
+    max-height: 85vh;
+    width: 85%;
+    min-height: 350px;
+  }
+  
+  #map-container {
+    height: 70vh;
+    top: 50%;
+  }
+  
+  .input-container {
+    bottom: 10px;
+    padding: 8px;
+    width: 90%;
   }
   
   .view-toggle {
@@ -321,7 +563,149 @@ body {
     right: env(safe-area-inset-right, 10px);
   }
   
+  .copyright {
+    bottom: env(safe-area-inset-bottom, 5px);
+  }
+}
+
+@media screen and (orientation: landscape) and (max-height: 400px) {
+  .weather-box {
+    max-height: 90vh;
+  }
+  
+  #map-container {
+    height: 80vh;
+  }
+}
+
+/* =========================
+   DESKTOP (1025px and above)
+========================= */
+@media screen and (min-width: 1025px) {
+  .weather-box {
+    max-width: 420px;
+    max-height: 500px;
+    top: 50%;
+    padding: 20px;
+  }
+  
+  #map-container {
+    max-width: 850px;
+    height: 65vh;
+    top: 50%;
+  }
+  
   .input-container {
-    bottom: env(safe-area-inset-bottom, 10px);
+    max-width: 500px;
+    bottom: 30px;
+  }
+  
+  .view-toggle {
+    top: 30px;
+    right: 30px;
+  }
+  
+  .toggle-btn {
+    font-size: 22px;
+    padding: 12px 20px;
+  }
+  
+  .weather-info h2 {
+    font-size: 30px;
+  }
+  
+  .temperature {
+    font-size: 42px;
+  }
+  
+  .weather-details {
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .weather-detail-item {
+    padding: 15px;
+    font-size: 16px;
+  }
+}
+
+/* =========================
+   LARGE DESKTOP SCREENS (1440px+)
+========================= */
+@media screen and (min-width: 1440px) {
+  .weather-box {
+    max-width: 450px;
+    max-height: 550px;
+  }
+  
+  #map-container {
+    max-width: 1000px;
+    height: 70vh;
+  }
+  
+  .input-container {
+    max-width: 550px;
+  }
+}
+
+/* =========================
+   TOUCH DEVICE OPTIMIZATIONS
+========================= */
+@media (hover: none) and (pointer: coarse) {
+  .toggle-btn,
+  .searchbtn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .weather-detail-item {
+    padding: 12px;
+  }
+  
+  /* Increase touch targets */
+  .input-bar {
+    font-size: 16px;
+    padding: 0 16px;
+  }
+}
+
+/* =========================
+   HIGH-DPI/ RETINA DISPLAYS
+========================= */
+@media screen and (min-resolution: 192dpi),
+       screen and (-webkit-min-device-pixel-ratio: 2) {
+  .toggle-btn,
+  .searchbtn,
+  .weather-box {
+    backdrop-filter: blur(15px);
+  }
+}
+
+/* =========================
+   EXTRA SMALL DEVICES
+   (Width less than 350px)
+========================= */
+@media screen and (max-width: 349px) {
+  .weather-box {
+    min-width: 260px;
+    max-height: 75vh;
     padding: 10px;
-  } 
+  }
+  
+  .input-container {
+    min-width: 260px;
+    padding: 6px;
+  }
+  
+  .weather-detail-item {
+    padding: 8px 5px;
+    font-size: 12px;
+  }
+  
+  .toggle-btn {
+    font-size: 15px;
+    padding: 6px 10px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+}
